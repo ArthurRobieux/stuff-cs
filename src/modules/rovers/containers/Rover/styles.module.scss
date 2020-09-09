@@ -1,0 +1,23 @@
+.inputContainer {
+  margin: 10px 0;
+}
+
+.infos {
+  margin: 10px 0 20px 0;
+}
+
+.selectedCamera {
+  color: #0166b2;
+}
+
+.camera {
+  margin-left: 10px;
+  transition-duration: 0.3s;
+  &:first-child {
+    margin: 0;
+  }
+  &:hover {
+    cursor: pointer;
+    color: #0166b2;
+  }
+}
