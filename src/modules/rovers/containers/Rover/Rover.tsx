@@ -74,7 +74,7 @@ export const Rover = ({ roverName }: RoverProps) => {
   return (
     <div>
       <div className={styles.inputContainer}>
-        <div>Choose a sol</div>
+        <div>Choose a sol stp</div> 
         <input
           value={typedSol}
           onChange={(evt) => setTypedSol(evt.target.value)}
@@ -104,12 +104,12 @@ export const Rover = ({ roverName }: RoverProps) => {
             })}
             onClick={() => setSelectedCamera(camera)}
           >
-            {camera.name}
+            {camera.name} test
           </span>
         ))}
       </div>
 
-      <div className={styles.infos}>
+      <div className={styles.test}>
         <div>Max sol : {roverInfos.max_sol}</div>
         <div>Status : {roverInfos.status}</div>
         <div>
@@ -120,6 +120,9 @@ export const Rover = ({ roverName }: RoverProps) => {
         <div>
           Selected camera : {selectedCamera ? selectedCamera.name : "All"}
         </div>
+        <div>Landing date : {new Date(roverInfos.landing_date).toLocaleDateString()} </div>
+        <div>max date : {new Date(roverInfos.max_date).toLocaleDateString()} </div>
+        <div>total photos : {roverInfos.total_photos}</div>
       </div>
 
       {photos.map((photo: any) => (

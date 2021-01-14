@@ -42,7 +42,7 @@ export const Rovers = () => {
                 selectedRover && rover.name === selectedRover.name,
             })}
           >
-            {rover.name}
+            {rover.name} salut
           </div>
         ))}
       </div>
