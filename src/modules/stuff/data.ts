@@ -1,7 +1,7 @@
 import dust2 from "../../assets/maps/dust2.png";
 import nuke_upper from "../../assets/maps/nuke_upper.png";
 
-export type StuffType = "molotov" | "flash" | "smoke";
+export type StuffType = "molo" | "flash" | "smoke";
 
 export type Stuff = {
   type: StuffType;
@@ -19,20 +19,35 @@ export type Map = {
 
 export type CSData = { maps: Map[] };
 
-export const cs_data: CSData = {
+export const emptyData: CSData = {
+  maps: [
+    {
+      name: "Dust 2",
+      minimap: dust2,
+      stuffs: [],
+    },
+    {
+      name: "Nuke",
+      minimap: nuke_upper,
+      stuffs: [],
+    },
+  ],
+};
+
+export const exempleData: CSData = {
   maps: [
     {
       name: "Dust 2",
       minimap: dust2,
       stuffs: [
         {
-          type: "molotov",
+          type: "molo",
           name: "molo antirush long a double porte",
           video_url: "1fkAKero5E2J9_qh6jh9bY6NDByOSdc99",
           coordinates: { x: 27, y: 85 },
         },
         {
-          type: "molotov",
+          type: "molo",
           name: "molo ct short",
           video_url: "1Xzsdg4Kd1gurPPRFSrySdtFw8NdHaCXH",
           coordinates: { x: 40, y: 50 },
@@ -70,7 +85,7 @@ export const cs_data: CSData = {
       minimap: nuke_upper,
       stuffs: [
         {
-          type: "molotov",
+          type: "molo",
           name: "molo_toit-cab_toit-lobby_RJS",
           video_url: "1-MjOOhcI9JcUq1BO8oZRbWkdpC58Euyw",
           description: "Jump Throw nécessaire",

@@ -1,44 +1,47 @@
 import React, { useEffect, useState } from "react";
 import classnames from "classnames";
 
-import { cs_data, Map, Stuff, StuffType } from "./data";
+import { CSData, Map, Stuff } from "./data";
 
-import molotov from "../../assets/icons/molotov.png";
+import molo from "../../assets/icons/molo.png";
 import flash from "../../assets/icons/flash.png";
 import smoke from "../../assets/icons/smoke.png";
 
 import styles from "./styles.module.scss";
-import { SwitchButton } from "../common-ui";
+import { Loader, SwitchButton } from "../common-ui";
+import { getData, getIcon } from "./utils";
 
 export const CS = () => {
   const [selectedMap, setSelectedMap] = useState(null as null | Map);
   const [selectedStuff, setSelectedStuff] = useState(null as null | Stuff);
   const [selectedStuffTypes, setSelectedStuffTypes] = useState({
-    molotov: true,
+    molo: true,
     flash: true,
     smoke: true,
   });
+  const [data, setData] = useState(null as CSData | null);
+
+  useEffect(() => {
+    getData().then((response: CSData) => {
+      setData(response);
+    });
+  }, []);
 
   useEffect(() => {
     setSelectedStuff(null);
   }, [selectedMap]);
 
-  const getIcon = (type: StuffType) => {
-    switch (type) {
-      case "molotov":
-        return molotov;
-      case "flash":
-        return flash;
-      default:
-        return smoke;
-    }
-  };
+  if (!data) return <Loader />;
 
   return (
     <div className={styles.container}>
       <div className={styles.mapChoices}>
-        {cs_data.maps.map((map) => (
-          <div onClick={() => setSelectedMap(map)} className={styles.mapChoice}>
+        {data.maps.map((map) => (
+          <div
+            onClick={() => setSelectedMap(map)}
+            className={styles.mapChoice}
+            key={map.name}
+          >
             {map.name}
           </div>
         ))}
@@ -74,18 +77,19 @@ export const CS = () => {
                           setSelectedStuff(stuff);
                         }, 1);
                       }}
+                      key={stuff.name}
                     />
                   ))}
               </div>
               <div className={styles.center}>
                 <div className={styles.filters}>
-                  <img src={molotov} alt="icon" className={styles.icon} />
+                  <img src={molo} alt="icon" className={styles.icon} />
                   <SwitchButton
-                    state={selectedStuffTypes.molotov}
+                    state={selectedStuffTypes.molo}
                     onChange={() =>
                       setSelectedStuffTypes({
                         ...selectedStuffTypes,
-                        molotov: !selectedStuffTypes.molotov,
+                        molo: !selectedStuffTypes.molo,
                       })
                     }
                   />
