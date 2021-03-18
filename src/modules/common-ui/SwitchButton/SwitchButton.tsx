@@ -6,17 +6,18 @@ export type SwitchButtonProps = {
   disabled?: boolean;
   state: boolean;
   onChange: (val: boolean) => void;
+  color?: string;
 };
 
 export const SwitchButton = ({
   disabled,
   state,
   onChange,
+  color,
 }: SwitchButtonProps) => {
   return (
     <span
       className={classNames(styles.container, {
-        [styles.activeContainer]: state,
         [styles.disabled]: disabled,
       })}
     >
@@ -32,6 +33,7 @@ export const SwitchButton = ({
           switchActive: state,
           [styles.active]: state,
         })}
+        style={{ ...(color && state && { background: color }) }}
         tabIndex={0}
         role="button"
       >

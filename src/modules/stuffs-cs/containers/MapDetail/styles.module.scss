@@ -1,0 +1,55 @@
+@import "../../../common-ui//vars.scss";
+
+.cross {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  opacity: 0.8;
+}
+
+.selectedCross {
+  opacity: 1;
+}
+
+.minimapPointer {
+  position: absolute;
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  background: white;
+  opacity: 0.9;
+  &:hover {
+    cursor: pointer;
+    opacity: 1;
+    transform: scale(1.2);
+    z-index: 1;
+  }
+}
+
+.minimap {
+  width: 100%;
+}
+
+.smokePointer {
+  background: white;
+}
+
+.flashPointer {
+  background: yellow;
+}
+
+.moloPointer {
+  background: orange;
+}
+
+.activePointer {
+  opacity: 1;
+  transform: scale(1.4);
+  z-index: 1;
+  background: #d37bff;
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.4);
+    background: #d37bff;
+  }
+}

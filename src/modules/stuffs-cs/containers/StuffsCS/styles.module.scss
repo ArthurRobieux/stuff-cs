@@ -1,0 +1,37 @@
+@import "../../../common-ui//vars.scss";
+
+.container {
+  margin: auto;
+  padding: 0 100px;
+  @include for-mobile-only {
+    padding: 0 10px;
+  }
+}
+
+.mapContainer {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  @include for-mobile-only {
+    flex-direction: column;
+  }
+}
+
+.mapDetail {
+  width: 45%;
+  position: relative;
+  @include for-mobile-only {
+    width: 100%;
+  }
+}
+
+.filters {
+  width: 10%;
+}
+
+.stuffDetail {
+  width: 45%;
+  @include for-mobile-only {
+    width: 100%;
+  }
+}

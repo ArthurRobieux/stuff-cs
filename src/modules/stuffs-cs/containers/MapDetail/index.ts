@@ -1,0 +1,1 @@
+export { MapDetail } from "./MapDetail";

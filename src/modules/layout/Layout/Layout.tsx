@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
+import { Header } from "../../stuffs-cs";
 import styles from "./styles.module.scss";
-import { Header } from "../Header";
 
 export type LayoutProps = { children: ReactNode };
 

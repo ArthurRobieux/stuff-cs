@@ -2,10 +2,10 @@ import React from "react";
 import "./App.css";
 
 import { Layout } from "../modules/layout/Layout";
-import { CS } from "../modules/stuff/CS";
+import { StuffsCS } from "../modules/stuffs-cs";
 
 export const App = () => (
   <Layout>
-    <CS />
+    <StuffsCS />
   </Layout>
 );

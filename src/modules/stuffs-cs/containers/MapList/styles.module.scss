@@ -1,0 +1,15 @@
+@import "../../../common-ui//vars.scss";
+
+.mapChoices {
+  display: flex;
+  justify-content: center;
+  border-bottom: 1px solid gray;
+  padding: 10px 0;
+}
+
+.mapChoice {
+  margin: 0 10px;
+  &:hover {
+    cursor: pointer;
+  }
+}
