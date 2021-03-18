@@ -1,6 +1,22 @@
+$responsive-width: 1024px;
+
+@mixin for-mobile-only {
+  @media only screen and (max-width: $responsive-width) {
+    @content;
+  }
+  @media only screen and (max-width: $responsive-width * 2) and (min-device-pixel-ratio: 2) {
+    @content;
+  }
+}
+
+// CSS
+
 .container {
   margin: auto;
   padding: 0 100px;
+  @include for-mobile-only {
+    padding: 0 10px;
+  }
 }
 
 .mapChoices {
@@ -21,17 +37,30 @@
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
+  @include for-mobile-only {
+    flex-direction: column;
+  }
 }
 
 .left {
   width: 45%;
   height: 45%;
   position: relative;
+  @include for-mobile-only {
+    width: 100%;
+  }
 }
 
 .right {
   width: 45%;
-  height: 45%;
+  @include for-mobile-only {
+    width: 100%;
+  }
+}
+
+.video {
+  width: 100%;
+  outline: none;
 }
 
 .stuffName {
@@ -42,6 +71,17 @@
 
 .stuffDescription {
   margin: 10px 0;
+}
+
+.cross {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  opacity: 0.8;
+}
+
+.selectedCross {
+  opacity: 1;
 }
 
 .minimapPointer {

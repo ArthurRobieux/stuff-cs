@@ -6,6 +6,7 @@ import { CSData, Map, Stuff } from "./data";
 import molo from "../../assets/icons/molo.png";
 import flash from "../../assets/icons/flash.png";
 import smoke from "../../assets/icons/smoke.png";
+import cross from "../../assets/icons/cross.svg";
 
 import styles from "./styles.module.scss";
 import { Loader, SwitchButton } from "../common-ui";
@@ -14,6 +15,7 @@ import { getData, getIcon } from "./utils";
 export const CS = () => {
   const [selectedMap, setSelectedMap] = useState(null as null | Map);
   const [selectedStuff, setSelectedStuff] = useState(null as null | Stuff);
+  const [hoveredStuff, setHoveredStuff] = useState(null as null | Stuff);
   const [selectedStuffTypes, setSelectedStuffTypes] = useState({
     molo: true,
     flash: true,
@@ -56,9 +58,17 @@ export const CS = () => {
                   src={selectedMap.minimap}
                   alt="minimap"
                   className={styles.minimap}
+                  onClick={() => setSelectedStuff(null)}
                 />
                 {selectedMap.stuffs
-                  .filter((stuff) => selectedStuffTypes[stuff.type])
+                  .filter(
+                    (stuff) =>
+                      (stuff.type.includes("molo") &&
+                        selectedStuffTypes.molo) ||
+                      (stuff.type.includes("flash") &&
+                        selectedStuffTypes.flash) ||
+                      (stuff.type.includes("smoke") && selectedStuffTypes.smoke)
+                  )
                   .map((stuff) => (
                     <img
                       src={getIcon(stuff.type)}
@@ -78,8 +88,36 @@ export const CS = () => {
                         }, 1);
                       }}
                       key={stuff.name}
+                      onMouseOver={() => setHoveredStuff(stuff)}
+                      onMouseLeave={() => setHoveredStuff(null)}
                     />
                   ))}
+
+                {hoveredStuff && (
+                  <img
+                    src={cross}
+                    alt="cross"
+                    className={styles.cross}
+                    style={{
+                      top: `${hoveredStuff.coordinates_throw.x}%`,
+                      left: `${hoveredStuff.coordinates_throw.y}%`,
+                    }}
+                    key={`hover_${hoveredStuff.name}`}
+                  />
+                )}
+
+                {selectedStuff && (
+                  <img
+                    src={cross}
+                    alt="cross"
+                    className={classnames(styles.cross, styles.selectedCross)}
+                    style={{
+                      top: `${selectedStuff.coordinates_throw.x}%`,
+                      left: `${selectedStuff.coordinates_throw.y}%`,
+                    }}
+                    key={`selected_${selectedStuff.name}`}
+                  />
+                )}
               </div>
               <div className={styles.center}>
                 <div className={styles.filters}>
@@ -128,7 +166,7 @@ export const CS = () => {
                         {selectedStuff.description}
                       </div>
                     )}
-                    <video controls style={{ width: "100%" }}>
+                    <video controls className={styles.video}>
                       <source
                         src={`https://drive.google.com/uc?export=download&id=${selectedStuff.video_url}`}
                         type="video/mp4"

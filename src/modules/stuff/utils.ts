@@ -6,14 +6,9 @@ import flash from "../../assets/icons/flash.png";
 import smoke from "../../assets/icons/smoke.png";
 
 export const getIcon = (type: StuffType) => {
-  switch (type) {
-    case "molo":
-      return molo;
-    case "flash":
-      return flash;
-    default:
-      return smoke;
-  }
+  if (type.includes("molo")) return molo;
+  if (type.includes("flash")) return flash;
+  else return smoke;
 };
 
 const checkMapName = (mapName: string, stuff: Stuff) => {
@@ -42,6 +37,10 @@ export const getData = () => {
           coordinates: {
             x: +splitted[2].split("-")[0],
             y: +splitted[2].split("-")[1],
+          },
+          coordinates_throw: {
+            x: +splitted[3].split("-")[0],
+            y: +splitted[3].split("-")[1],
           },
           video_url: splitted[4],
         };
